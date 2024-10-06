@@ -1,0 +1,718 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.main-container {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.sidebar .logo {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.sidebar .logo h2 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.sidebar nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 15px 0;
+}
+
+.sidebar nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+.sidebar nav ul li a i {
+    margin-right: 10px;
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #444;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+/* Main Content Styling */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #fff;
+    width: calc(100% - 250px);
+    transition: all 0.3s ease;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 50px;
+    background-color: #eee;
+    margin: 20px auto;
+    border-radius: 10px;
+}
+
+.welcome-section h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.welcome-section p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Statistics Section */
+.statistics {
+    display: flex;
+    justify-content: space-between;
+    margin: 40px 0 30px 30px;
+    gap: 20px;
+}
+
+.stat-box {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    flex-grow: 1;
+    margin: 0 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.stat-box h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.stat-box p {
+    font-size: 16px;
+    color: #777;
+}
+
+/* Responsive Styling */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    .statistics {
+        flex-wrap: wrap;
+    }
+
+    .stat-box {
+        margin-bottom: 20px;
+        flex-basis: 100%;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        text-align: center;
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .statistics {
+        flex-direction: column;
+        margin-right: 10%;
+        margin-left: 10%;
+    }
+
+    .stat-box {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-section h1 {
+        font-size: 28px;
+    }
+
+    .welcome-section p {
+        font-size: 16px;
+    }
+
+    .stat-box h3 {
+        font-size: 24px;
+    }
+
+    .stat-box p {
+        font-size: 14px;
+    }
+    .welcome-section{
+        margin-left:10%;
+    }
+    .statistics{
+        margin-right: 8%;
+        margin-left: 15%;
+    }
+}
+
+/* Main Container */
+.completed-tasks-container {
+    margin: 20px 100px 20px 400px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    max-width: 1200px;
+    width: calc(100% - 40px); /* Add this line */
+}
+
+/* Page Title */
+.completed-tasks-container h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Tasks Table */
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.tasks-table thead {
+    background-color: #007bff;
+    color: white;
+}
+
+.tasks-table th, .tasks-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    word-wrap: break-word;
+}
+
+.tasks-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.tasks-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button Styling */
+.btn-edit, .btn-delete {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    text-decoration: none;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit {
+    background-color: #28a745; /* لون أخضر */
+    margin-right: 5px; /* مسافة بين زر التعديل وزر الحذف */
+}
+
+.btn-edit:hover {
+    background-color: #218838; /* لون أغمق عند التمرير */
+}
+
+.btn-delete {
+    background-color: #dc3545; /* لون أحمر */
+}
+
+.btn-delete:hover {
+    background-color: #c82333; /* لون أغمق عند التمرير */
+}
+
+.task-button {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.start-task {
+    background-color: #28a745;
+}
+
+.end-task {
+    background-color: #007bff;
+}
+
+.cancel-task {
+    background-color: #dc3545;
+}
+
+.task-button:hover {
+    opacity: 0.8;
+}
+
+/* Table Action Buttons Alignment */
+.tasks-table td form {
+    display: inline-block; /* جعل استمارة الحذف تعرض بجانب زر التعديل */
+}
+
+
+/* Responsive Design */
+/* For Screens Less than 1500px */
+@media (max-width: 1200px) {
+    .completed-tasks-container {
+        margin-left: 32%;
+        max-width: 100%;
+        width: calc(100% - 40px); /* Add this line */
+        text-align: center;
+    }
+
+    .tasks-table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .tasks-table th, .tasks-table td {
+        padding: 25px;
+        font-size: 14px;
+    }
+}
+
+/* For Screens Less than 1024px */
+@media (max-width: 1024px) {
+    .completed-tasks-container {
+        margin-left: 32%;
+        max-width: 100%;
+        width: calc(100% - 40px); /* Add this line */
+    }
+
+    .tasks-table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .tasks-table th, .tasks-table td {
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
+/* For Screens Less than 768px */
+@media (max-width: 768px) {
+    .completed-tasks-container {
+        margin-left:12%;
+        max-width: 100%;
+        width: calc(100% - 40px); /* Add this line */
+    }
+
+    .tasks-table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .tasks-table th, .tasks-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+
+/* For Screens Less than 576px */
+@media (max-width: 576px) {
+    .completed-tasks-container {
+        margin-left: 10px;
+        margin-right: 20px;
+        max-width: 100%;
+        width: calc(100% - 50px); /* Add this line */
+    }
+
+    .tasks-table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .tasks-table th, .tasks-table td {
+        padding: 6px;
+        font-size: 12px;
+    }
+}
+
+/* For Screens Less than 460px */
+@media (max-width: 460px) {
+    .completed-tasks-container {
+        margin-right: 30px;
+        padding: 10px;
+        max-width: 100%;
+        width: calc(100% - 40px); /* Add this line */
+    }
+
+    .completed-tasks-container h1 {
+        font-size: 22px;
+    }
+
+    .tasks-table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    .tasks-table th, .tasks-table td {
+        padding: 5px;
+        font-size: 10px;
+    }
+
+    .tasks-table th {
+        font-size: 12px;
+    }
+
+    .tasks-table td {
+        font-size: 10px;
+    }
+}
+
+.create-user-container {
+    max-width: 800px;
+    margin: 50px 100px 50px 600px;
+    padding: 50px 150px 30px 150px;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.create-user-container .title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #007bff;
+}
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+    font-size: 14px;
+    color: #555;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Button Styling */
+.btn-submit {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive Design */
+/* For Screens Less than 1024px */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    .create-user-container {
+        padding: 16px 100px 10px 100px;
+        margin-left: 420px;
+        margin-right: 0;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+}
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .content {
+        margin-left: 200px;
+        width: calc(100% - 200px);
+    }
+
+    .create-user-container {
+        padding: 16px 100px 10px 100px;
+        margin-left: 350px;
+        margin-right: 0;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+}
+
+/* For Screens Less than 768px */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+        height: auto;
+        text-align: center;
+    }
+
+    .content {
+        margin-left: 0;
+        width: 100%;
+        padding-top: 20px;
+    }
+
+    .create-user-container {
+        margin: 20px 20px 20px 20%;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+}
+
+/* For Screens Less than 576px */
+@media (max-width: 576px) {
+    .create-user-container {
+        padding: 12px 70px 12px 70px;
+        margin: 10% 10% 10% 15%;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-control {
+        font-size: 13px;
+    }
+
+    .btn-submit {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
+/* Main Container */
+.create-task-container {
+    width: 600px;
+    margin: 50px auto;
+    background-color: #f9f9f9;
+    padding: 30px 50px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.create-task-container h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+.task-form .form-group {
+    margin-bottom: 15px;
+}
+
+.task-form label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.task-form input,
+.task-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.task-form input:focus,
+.task-form select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+}
+
+/* Submit Button */
+.btn-submit {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .create-task-container {
+        width: 50%;
+        margin: 10px 20px 10px 320px;
+        padding: 20px 30px;
+    }
+}
+@media (max-width: 1024px) {
+    .create-task-container {
+        width: 50%;
+        margin: 10px 20px 10px 300px;
+        padding: 20px 30px;
+    }
+}
+@media (max-width: 768px) {
+    .create-task-container {
+        width: 80%;
+        margin: 50px auto;
+        padding: 20px 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .create-task-container {
+        width: 100%;
+        margin: 20px 10px;
+        padding: 15px 20px;
+    }
+
+    .create-task-container h1 {
+        font-size: 24px;
+    }
+}
+
+
+/* Custom square button styling */
+.btn-square {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+    padding: 0;
+}
+
+/* Colors for different task actions */
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+a{
+    text-decoration: none;
+}
