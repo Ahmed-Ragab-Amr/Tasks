@@ -10,6 +10,7 @@
                 <th>{{ __('message.task_number') }}</th>
                 <th>{{ __('message.task_work') }}</th>
                 <th>{{ __('message.employee') }}</th>
+                <th>{{ __('message.group') }}</th>
                 <th>{{ __('message.phone') }}</th>
                 <th>{{ __('message.task_address') }}</th>
                 <th>{{ __('message.start') }}</th>
@@ -20,23 +21,24 @@
             @php
             $currentUser = null;
             @endphp
-            @foreach ($tasks as $task)
+            @foreach ($tasks as $index => $task)
 
                 @if ($currentUser !== $task->user->id)
                     @php
                         $currentUser = $task->user->id;
                     @endphp
                     <tr class="user-separator">
-                        <td colspan="7" style="text-align:center; background-color: #f0f0f0; font-weight: bold;">
+                        <td colspan="8" style="text-align:center; background-color: #f0f0f0; font-weight: bold;">
                             {{ $task->user->name }}'s Tasks
                         </td>
                     </tr>
                 @endif
 
             <tr>
-                <td>{{ $task->id }}</td>
+                <td>{{ $index+1 }}</td>
                 <td>{{ $task->works }}</td>
                 <td>{{ $task->user->name }}</td>
+                <td>{{ $task->group }}</td>
                 <td>{{ $task->task_phone }}</td>
                 <td>{{ $task->task_address }}</td>
                 <td>{{ $task->start_time }}</td>

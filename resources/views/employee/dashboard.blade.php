@@ -80,6 +80,7 @@
                                 @if($task->start && !$task->end && !$task->cancele)
                                 <form action="{{ route('task.end' , $task->id) }}" method="POST">
                                     @csrf
+                                    <input type="text" name="price" style="width: 100px; height: 100px; text-align: center; border-radius: 5px;">
                                     <button type="submit" class="btn-square btn-primary" style="padding:40px; border:none">{{ __('message.Finish') }}</button>
                                 </form>
                                 @elseif($task->end && !$task->canceled)
@@ -193,13 +194,45 @@
             </table>
         </div>
 
+        <audio id="notificationSound">
+            <source src="{{ asset('notifi.wav') }}" type="audio/mpeg">
+        </audio>
 
 
-<script>
-    setTimeout(function(){
-        location.reload();
-    }, 30000);
-</script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+
+
+            function checkForNewTasks() {
+                var lastTaskId = {{ \App\Models\Task::latest()->first()->id ?? 0 }};
+                $.ajax({
+                    url: '{{ route("check.new.tasks") }}',
+                    method: 'GET',
+                    data: { lastTaskId: lastTaskId },
+                    success: function(response) {
+                        if (response.newTasks && response.newTasks.length > 0) {
+
+                            var sound = document.getElementById("notificationSound");
+                            sound.play();
+
+                                setTimeout(function() {
+                                    location.reload();
+                                }, 3000);
+
+                        }
+                    },
+                    error: function() {
+                        console.log('Error checking for new tasks');
+                    }
+                });
+            }
+
+            setInterval(checkForNewTasks, 10000); // تكرار العملية كل 10 ثوانٍ
+        </script>
+
+
+
 
 
     </div>

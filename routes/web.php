@@ -20,6 +20,8 @@ use App\Http\Controllers\employee\EmployeeController;
 
 Route::middleware(['auth' , 'employee'])->group(function(){
     Route::get('Employee/Dashboard' , [EmployeeController::class , 'home'])->name('employee.dashboard');
+    Route::get('/tasks/new', [TaskController::class, 'getNewTasks']);
+    Route::get('/check-new-tasks', [TaskController::class, 'checkNewTasks'])->name('check.new.tasks');
     Route::post('start/{id}' , [TaskController::class , 'start'])->name('task.start');
     Route::post('end/{id}' , [TaskController::class , 'end'])->name('task.end');
 });

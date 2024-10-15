@@ -22,6 +22,7 @@
                     <th>{{ __('message.start') }}</th>
                     <th>{{ __('message.phone') }}</th>
                     <th>{{ __('message.task_work') }}</th>
+                    <th>{{ __('message.finished_at') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -35,7 +36,7 @@
                             $currentUser = $task->user->id;
                         @endphp
                         <tr class="user-separator">
-                            <td colspan="7" style="text-align:center; background-color: #f0f0f0; font-weight: bold;">
+                            <td colspan="8" style="text-align:center; background-color: #f0f0f0; font-weight: bold;">
                                 {{ $task->user->name }}'s Tasks
                             </td>
                         </tr>
@@ -49,6 +50,11 @@
                         <td>{{ \Carbon\Carbon::parse($task->start_time)->format('d M Y, h:i:s A') }}</td>
                         <td>{{ $task->task_phone }}</td>
                         <td>{{ $task->works }}</td>
+                        @if ($task->price != NULL)
+                        <td>{{ $task->end }} price: <strong>{{ $task->price }}</strong></td>
+                        @else
+                            <td>{{ $task->end }} price: <strong>NULL</strong></td>
+                        @endif
                     </tr>
 
                 @endforeach

@@ -23,4 +23,5 @@ class EmployeeController extends Controller
         $employees = User::where('user_type' , 'employee')->get();
         return view('admin.employee.show' , ['employees' => $employees]);
     }
+
 }

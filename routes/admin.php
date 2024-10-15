@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\manager\ManagerController;
@@ -15,6 +16,9 @@ Route::middleware(['auth' , 'admin'])->group(function(){
 
     Route::get('employee/{id}' , [AdminController::class , 'showOneEmployee'])->name('admin.employee');
     Route::get('employee/tasks/{id}' , [AdminController::class , 'showEmployeeTask'])->name('admin.tasks');
+
+    Route::get('show/price' , [TaskController::class , 'showPrice'])->name('showPrice');
+    Route::get('get/price' , [TaskController::class , 'getPrice'])->name('getPrice');
 
     Route::get('user' , [UserController::class , 'create'])->name('user.create');
     Route::post('user' , [UserController::class , 'store'])->name('user.store');

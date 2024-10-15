@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Http\Request;
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
@@ -50,7 +51,6 @@ class TaskController extends Controller
         $task_phone = '+965' . $request->task_phone;
 
         $data['task_phone'] = $task_phone;
-
 
 
         $task = Task::create($data);
@@ -148,11 +148,16 @@ class TaskController extends Controller
 
     public function showCompleted()
     {
-        $tasks = Task::where('status' , 'completed')
-                        ->orderBy('user_id')
-                        ->orderBy('start_time')
-                        ->get();
-        return view('manager.tasks.compelete' , ['tasks' => $tasks]);
+        $tasks = Task::where('status', 'completed')
+        ->with('user')
+        ->get()
+        ->groupBy('user_id')
+        ->map(function ($tasks) {
+            return $tasks->sortByDesc('end')->take(15);
+        });
+
+        return view('manager.tasks.compelete', ['tasks' => $tasks]);
+
     }
     public function showCanceled()
     {
@@ -176,10 +181,14 @@ class TaskController extends Controller
 
     public function end(Request $request , $id)
     {
+        $request->validate([
+            'price'=>'required',
+        ]);
         $task = Task::findOrFail($id);
         $task->update([
             'end'=>now(),
             'status'=>'completed',
+            'price'=>$request->price,
         ]);
         return redirect()->back();
     }
@@ -242,5 +251,50 @@ class TaskController extends Controller
         return view('manager.tasks.showAll' , ["tasks"=>$tasks]);
 
     }
+
+    public function getNewTasks(Request $request)
+{
+    $lastTaskId = $request->input('lastTaskId');
+
+    // إرجاع المهام التي تمت إضافتها بعد آخر ID
+    $newTasks = Task::where('id', '>', $lastTaskId)
+                    ->whereDate('start_time', Carbon::today())
+                    ->get();
+
+    return response()->json($newTasks);
+}
+
+
+public function showPrice()
+{
+    return view('admin.showPrice');
+}
+
+public function getPrice(Request $request)
+{
+    $tasks = Task::where('status' , 'completed')
+                    ->whereDate('end' , $request->date)
+                    ->orderBy('user_id')
+                    ->orderBy('end')
+                    ->get();
+    return view('admin.showPrice' , ['tasks'=>$tasks]);
+}
+
+
+public function checkNewTasks(Request $request) {
+    $newTasks = Task::where('id', '>', $request->lastTaskId)
+                    ->where('user_id' , auth()->user()->id)
+                    ->where(function($query) {
+                        $query->whereDate('start_time', \Carbon\Carbon::today())
+                              ->orWhereDate('start_time', \Carbon\Carbon::tomorrow());
+                    })
+                    ->get();
+
+    return response()->json([
+        'newTasks' => $newTasks
+    ]);
+}
+
+
 
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->datetime('start')->nullable();
             $table->datetime('end')->nullable();
             $table->datetime('cancele')->nullable();
+            $table->string('price')->nullable();
             $table->enum('group' , ['group1','group2']);
             $table->enum('status' , [ 'waiting' ,'ongoing' , 'completed' , 'canceled'])->default('waiting');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');

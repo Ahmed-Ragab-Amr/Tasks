@@ -23,6 +23,7 @@
                     <li><a href="{{route('user.create')}}"><i class="fas fa-plus-circle"></i> {{ __('message.add_user') }}</a></li>
                     <li><a href="{{ route('employee.show') }}"><i class="fas fa-tasks"></i>{{ __('message.view_employee') }}</a></li>
                     <li><a href="{{ route('manager.show') }}"><i class="fas fa-tasks"></i> {{ __('message.view_moderator') }}</a></li>
+                    <li><a href="{{ route('showPrice') }}"><i class="fas fa-tasks"></i> {{ __('message.show_price') }}</a></li>
                     <li><a href="{{ route('changelang' , 'ar') }}"><i class="fas fa-tasks"></i> {{ __('message.arabic') }}</a></li>
                     <li><a href="{{ route('changelang' , 'en') }}"><i class="fas fa-tasks"></i> {{ __('message.english') }}</a></li>
                     <li>

@@ -56,5 +56,8 @@ return [
     'manage_task'=>"Manage tasks, track progress, and keep everything organized.",
     'chose_date'=>"Choose Date",
     'no task'=>"No tasks found for this date.",
+    'show_price'=>'Show Price By Date',
+    'price'=>'Price',
+    'total_price'=>'Total Price For This Day',
     'task_created' => 'Task created successfully.',
 ];

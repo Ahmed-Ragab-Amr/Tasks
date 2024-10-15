@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['task_address' , 'start_time' , 'task_phone' , 'works' , 'start' , 'end' , 'cancele' , 'status' , 'user_id' , 'group'];
+    protected $fillable = ['task_address' , 'start_time' , 'task_phone' , 'works' , 'start' , 'end' , 'cancele' , 'status' , 'user_id' , 'group' , 'price'];
     public function user()
     {
         return $this->belongsTo(User::class);

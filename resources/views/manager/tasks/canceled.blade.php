@@ -19,7 +19,7 @@
             @php
             $currentUser = null;
             @endphp
-            @foreach ($tasks as $task)
+            @foreach ($tasks as $index => $task)
 
                 @if ($currentUser !== $task->user->id)
                     @php
@@ -33,7 +33,7 @@
                 @endif
 
             <tr>
-                <td>1</td>
+                <td>{{$index+1}}</td>
                 <td>{{ $task->works }}</td>
                 <td>{{ $task->user->name }}</td>
                 <td>{{ $task->task_phone }}</td>
